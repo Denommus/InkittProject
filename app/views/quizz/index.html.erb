@@ -1,0 +1,10 @@
+<%= form_for :answer, url: url_for(controller: :quizz), method: :post do |f| %>
+    <h1><%= @current_question.first %></h1>
+    <% @current_question.drop(1).each do |answer| %>
+        <p>
+            <%= f.radio_button "answer", answer %>
+            <%= answer %>
+        </p>
+    <% end %>
+    <%= f.submit %>
+<% end %>
