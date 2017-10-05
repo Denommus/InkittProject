@@ -1,6 +1,6 @@
 module QuizzHelper
   def percentage(question, answer)
-    total = question.answers.sum(:count)
+    total = question.total_count
     if total==0
       return "Not enough answers"
     end

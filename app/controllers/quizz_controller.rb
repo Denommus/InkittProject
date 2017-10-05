@@ -6,7 +6,11 @@ class QuizzController < ApplicationController
 
     # Were all the questions answered?
     if session['answers'].length >= Question.count
-      @questions = Question.includes(:answers).all
+      @questions = Question
+                     .joins('LEFT JOIN answers ON answers.question_id = questions.id')
+                     .select('questions.*, SUM(answers.count) AS total_count')
+                     .group(:id)
+                     .includes(:answers)
       return render "finish.html.erb"
     end
     @current_question = Question.find(session['answers'].length+1)
@@ -19,7 +23,7 @@ class QuizzController < ApplicationController
     # probably went wrong and we ignore it (the user experience won't
     # be affected)
     if session['answers'].length == Question.count
-      session['answers'].each { |a| Answer.find(a).increment!(:count) }
+      Answer.where(id: session['answers']).update_all('count = count + 1')
     end
     redirect_to controller: :quizz, action: :index
   end
