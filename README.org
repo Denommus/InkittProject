@@ -30,6 +30,13 @@
      bin/rails db:migrate
    #+END_SRC
 
+   Now we need to populate the database with the questions. For that,
+   we use the task ~quizz:generate~
+
+   #+BEGIN_SRC sh
+     bin/rails quizz:generate
+   #+END_SRC
+
    Then you can run the system!
 
    #+BEGIN_SRC sh
