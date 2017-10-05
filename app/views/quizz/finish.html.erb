@@ -1,5 +1,12 @@
-<h1>Here are your answers!</h1>
-<% @answers.each do |a| %>
-    <h2 class="separator"><%= a[0] %></h2>
-    <h3><%= a[1] %></h3>
+<h1>Here are all the user's answers!</h1>
+<% @questions.each do |q| %>
+    <h2 class="separator"><%= q.description %></h2>
+    <% q.answers.each do |a| %>
+        <% per = percentage(q, a) %>
+        <p>
+            <strong><%= a.description %></strong><br />
+            <progress value="<%= per.round(0) %>" max="100"></progress>
+            <span class="percentage"><%= per %>%</span>
+        </p>
+    <% end %>
 <% end %>

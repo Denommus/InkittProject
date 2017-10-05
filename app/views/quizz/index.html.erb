@@ -1,9 +1,9 @@
 <%= form_for :answer, url: url_for(controller: :quizz), method: :post do |f| %>
-    <h1><%= @current_question.first %></h1>
-    <% @current_question.drop(1).each do |answer| %>
+    <h1><%= @current_question.description %></h1>
+    <% @current_question.answers.each do |answer| %>
         <p class="separator">
-            <%= f.radio_button "answer", answer %>
-            <%= answer %>
+            <%= f.radio_button "answer", answer.id %>
+            <%= answer.description %>
         </p>
     <% end %>
     <%= f.submit class: "separator" %>
