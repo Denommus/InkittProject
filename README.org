@@ -1,1 +1,39 @@
-* TODO Write the README
+* Inkitt Quizz
+** Installing the tools
+   You'll need Ruby 2.3.1 installed. If you don't, I recommend
+   installing [[https://github.com/rbenv/rbenv][rbenv]] and [[https://github.com/rbenv/ruby-build][ruby-build]] (follow their installation
+   instructions).
+
+   After that, install the correct version with
+
+   #+BEGIN_SRC sh
+     rbenv install 2.3.1
+   #+END_SRC
+
+   The project is setup to use this version locally, so you don't need
+   to explicitly set it as the global one (that's what the
+   ~.ruby-version~ file is for).
+
+   Now, every step from now on must be done in the directory of the
+   project.
+
+   Install bundler and execute bundle install
+
+   #+BEGIN_SRC sh
+     gem install bundler
+     bundle install
+   #+END_SRC
+** Running the project
+   You'll need first to execute the database migrations
+
+   #+BEGIN_SRC sh
+     bin/rails db:migrate
+   #+END_SRC
+
+   Then you can run the system!
+
+   #+BEGIN_SRC sh
+     bin/rails s
+   #+END_SRC
+
+   It will be available under ~http://localhost:3000/~.
